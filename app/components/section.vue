@@ -1,14 +1,17 @@
 <script setup lang="ts">
 const props = defineProps<{
-  name: string;
-}>();
+  name: string
+}>()
 
-const { t, te } = useI18n();
+const { t, te } = useI18n()
 </script>
 <template>
-  <div class="flex max-w-200 flex-col gap-5">
+  <div
+    class="flex w-full flex-col gap-5"
+    :id="t(`${name}.header`).toLowerCase()"
+  >
     <h2
-      class="text-3xl font-semibold uppercase"
+      class="text-3xl font-medium tracking-wider uppercase"
       v-html="t(`${name}.header`)"
     ></h2>
     <p v-if="te(`${name}.text`)" v-html="t(`${name}.text`)"></p>

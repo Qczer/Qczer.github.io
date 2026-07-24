@@ -1,0 +1,22 @@
+[
+  {
+    "header": "LinkedIn",
+    "text": "/in/mateuszkuczera",
+    "link": "https://www.linkedin.com/in/mateuszkuczera"
+  },
+  {
+    "header": "GitHub",
+    "text": "/Qczer",
+    "link": "https://www.github.com/Qczer"
+  },
+  {
+    "header": "Discord",
+    "text": "@qczer"
+  },
+  {
+    "header": "Email",
+    "text": "mkuczera@proton.me",
+    "link": "mailto:mkuczera@proton.me",
+    "icon": "lucide:mail"
+  }
+]

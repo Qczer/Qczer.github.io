@@ -1,13 +1,13 @@
 export default {
   AboutMe: {
-    header: "About Me",
-    text: "Hi! I'm <b>Mateusz Kuczera</b>, a <b>18 y/o</b> software engineer, who is always ready to explore new things. <br/>I actively build real-world projects and continuosly sharpen my skills.",
+    header: 'About Me',
+    text: "Hi! I'm <b>Mateusz Kuczera</b>, an <b>18-year-old</b> software developer who is always eager to learn and explore new technologies.<br/>I actively build real-world projects and continuosly improve my skills. My main focus is modern C++, Nuxt and React"
   },
   HireMe: {
-    header: "Hire Me",
-    text: "I'm available for freelance, internship and part-time job opportunities. If you need a committed developer to build or improve your product, feel free to contact me.",
+    header: 'Hire Me',
+    text: "I'm available for freelance, internship and part-time opportunities. If you're looking for a dedicated developer to build or improve your product, feel free to get in touch."
   },
   Socials: {
-    header: "Socials",
-  },
-};
+    header: 'Socials'
+  }
+}

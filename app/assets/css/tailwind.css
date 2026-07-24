@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "./main.css";
+@import 'tailwindcss';
+@import './main.css';
 
 @theme {
   --color-background: var(--background);
