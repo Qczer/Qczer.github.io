@@ -7,6 +7,12 @@ export default {
     header: 'Hire Me',
     text: "I'm available for freelance, internship and part-time opportunities. If you're looking for a dedicated developer to build or improve your product, feel free to get in touch."
   },
+  Skills: {
+    header: 'Skills'
+  },
+  Projects: {
+    header: 'Projects'
+  },
   Socials: {
     header: 'Socials'
   }

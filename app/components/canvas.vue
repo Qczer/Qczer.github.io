@@ -2,6 +2,8 @@
 import { getRandomColor, hexToRgb, rgbToString, lerp } from '~~/utils/colors'
 const canvas = ref<HTMLCanvasElement | null>(null)
 
+const blockSize = 5
+
 onMounted(() => {
   const canvasEl = canvas.value as HTMLCanvasElement
   if (!canvasEl) return
@@ -34,10 +36,6 @@ onMounted(() => {
 
   function loop() {
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
-
-    const r = Math.round(lerp(color.r, targetColor.r, 0.05))
-    const g = Math.round(lerp(color.g, targetColor.g, 0.05))
-    const b = Math.round(lerp(color.b, targetColor.b, 0.05))
 
     color = {
       r: lerp(color.r, targetColor.r, 0.02),
@@ -76,10 +74,31 @@ onMounted(() => {
       block.x += block.velocity.x
       block.y += block.velocity.y
 
-      if (block.x >= canvasEl.width || block.x <= 0) block.velocity.x *= -1
-      if (block.y >= canvasEl.height || block.y <= 0) block.velocity.y *= -1
+      if (block.x <= 0) {
+        block.x = 0
+        block.velocity.x *= -0.8
+      } else if (block.x + blockSize >= canvasEl.width) {
+        block.x = canvasEl.width - blockSize
+        block.velocity.x *= -0.8
+      }
 
-      ctx.fillRect(block.x, block.y, 5, 5)
+      if (block.y <= 0) {
+        block.y = 0
+        block.velocity.y *= -0.8
+      } else if (block.y + blockSize >= canvasEl.height) {
+        block.y = canvasEl.height - blockSize
+        block.velocity.y *= -0.8
+      }
+
+      ctx.beginPath()
+      ctx.arc(
+        block.x + blockSize / 2,
+        block.y + blockSize / 2,
+        blockSize / 2,
+        0,
+        Math.PI * 2
+      )
+      ctx.fill()
     })
 
     requestAnimationFrame(loop)

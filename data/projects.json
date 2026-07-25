@@ -1,0 +1,20 @@
+[
+  {
+    "name": "RubikCubeTimer",
+    "technology": ["Nuxt", "Tailwind"],
+    "desc": "A CubeDesk recreation rebuilt from scratch after 2 years of learning and progress.",
+    "link": "https://github.com/Qczer/RubikCubeTimer"
+  },
+  {
+    "name": "GameEngine",
+    "technology": ["Cpp", "CMake", "ImGui"],
+    "desc": "A game engine developed from scratch while learning game engine architecture through The Cherno's tutorials.",
+    "link": "https://github.com/Qczer/GameEngine"
+  },
+  {
+    "name": "Stacked",
+    "technology": ["React Native"],
+    "desc": "A poker and blackjack training app built with a friend, featuring hand evaluation and educational content.",
+    "link": "https://github.com/jaca3894/Stacked"
+  }
+]

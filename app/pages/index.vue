@@ -1,17 +1,21 @@
 <script setup lang="ts">
 import socials from '~~/data/socials.json'
+import skills from '~~/data/skills.json'
+import projects from '~~/data/projects.json'
 import Section from '~/components/section.vue'
 import SocialsCard from '~/components/socialsCard.vue'
 
 const socialsRef = ref<HTMLElement | null>(null)
+const skillsRef = ref<HTMLElement | null>(null)
 const animate = ref(false)
 const animationLength = 400
 const delay = animationLength / 2
 const showScrollButton = ref(true)
 
-const scrollDown = () => {
-  socialsRef.value?.scrollIntoView({
-    behavior: 'smooth'
+const scrollTo = (element: HTMLElement | null) => {
+  element?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
   })
 }
 
@@ -44,17 +48,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="h-screen w-screen p-12">
-    <div class="relative h-full w-full rounded-xl border border-white">
+  <div class="h-screen w-screen md:p-12">
+    <div class="relative h-full w-full rounded-xl border-white md:border">
       <Canvas />
       <div
-        class="scroll-container relative z-20 flex h-full w-full flex-col items-center gap-15 overflow-auto scroll-smooth p-10 text-center"
+        class="scroll-container relative z-20 flex h-full w-full flex-col items-center gap-15 overflow-auto scroll-smooth text-center"
       >
         <Page class="relative">
           <Section name="AboutMe" />
           <Section name="HireMe">
             <a
-              @click="scrollDown"
+              @click="scrollTo(socialsRef)"
               class="cursor-pointer font-semibold underline transition-colors hover:text-zinc-400"
             >
               Contact me
@@ -67,14 +71,41 @@ onMounted(() => {
                 ? 'opacity-50'
                 : 'pointer-events-none translate-y-4 opacity-0'
             ]"
-            @click="scrollDown"
+            @click="scrollTo(skillsRef)"
           >
             <Icon name="lucide:arrow-down" />
           </div>
         </Page>
         <Page>
+          <Section name="Skills">
+            <div
+              ref="skillsRef"
+              class="grid h-full grow grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4"
+            >
+              <SkillsCard v-for="s in skills" :text="s" />
+            </div>
+            <div
+              class="h-1 w-full rounded-lg border-t border-white max-md:hidden"
+            ></div>
+          </Section>
+        </Page>
+        <Page>
+          <Section name="Projects">
+            <ProjectCard
+              v-for="p in projects"
+              :name="p.name"
+              :technology="p.technology"
+              :desc="p.desc"
+              :link="p.link"
+            />
+          </Section>
+        </Page>
+        <Page>
           <Section name="Socials">
-            <div ref="socialsRef" class="flex w-full justify-center gap-2">
+            <div
+              ref="socialsRef"
+              class="grid grow grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4"
+            >
               <SocialsCard
                 v-for="(s, i) in socials"
                 :key="s.header"
@@ -86,7 +117,9 @@ onMounted(() => {
                 :animate="animate"
               />
             </div>
-            <div class="h-1 w-full rounded-lg border-t border-white"></div>
+            <div
+              class="h-1 w-full rounded-lg border-t border-white max-md:hidden"
+            ></div>
           </Section>
         </Page>
       </div>
