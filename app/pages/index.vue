@@ -5,6 +5,8 @@ import projects from '~~/data/projects.json'
 import Section from '~/components/section.vue'
 import SocialsCard from '~/components/socialsCard.vue'
 
+const { t } = useI18n()
+
 const socialsRef = ref<HTMLElement | null>(null)
 const skillsRef = ref<HTMLElement | null>(null)
 const animate = ref(false)
@@ -61,7 +63,7 @@ onMounted(() => {
               @click="scrollTo(socialsRef)"
               class="cursor-pointer font-semibold underline transition-colors hover:text-zinc-400"
             >
-              Contact me
+              {{ t('HireMe.contactMe') }}
             </a>
           </Section>
           <div
