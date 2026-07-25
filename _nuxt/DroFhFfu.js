@@ -1,1 +1,0 @@
-var e=()=>({warnHtmlMessage:!1});export{e as default};
