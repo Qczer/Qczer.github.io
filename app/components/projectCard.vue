@@ -12,7 +12,7 @@ const goToPage = () => {
 </script>
 <template>
   <div
-    class="group relative flex cursor-pointer items-center justify-between gap-2 border-b border-b-zinc-800 p-2"
+    class="group relative flex cursor-pointer items-center justify-between gap-2 border-b border-b-gray-300 p-2 dark:border-b-zinc-800"
     @click="goToPage"
   >
     <div class="flex flex-col gap-2">
@@ -25,7 +25,7 @@ const goToPage = () => {
             <span>{{ t }}</span>
             <span
               v-if="i !== technology.length - 1"
-              class="h-1 w-1 rounded-full bg-white"
+              class="h-1 w-1 rounded-full bg-black dark:bg-white"
             />
           </template>
         </div>
@@ -40,7 +40,7 @@ const goToPage = () => {
       class="shrink-0 transition-transform group-hover:translate-x-2"
     />
     <div
-      class="absolute bottom-0 left-1/2 h-px w-full -translate-x-1/2 scale-x-0 bg-white transition-transform duration-300 ease-out group-hover:scale-x-100"
+      class="absolute bottom-0 left-1/2 h-px w-full -translate-x-1/2 scale-x-0 bg-black transition-transform duration-300 ease-out group-hover:scale-x-100 dark:bg-white"
     />
   </div>
 </template>

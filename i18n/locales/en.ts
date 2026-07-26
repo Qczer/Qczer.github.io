@@ -14,7 +14,7 @@ export default {
   Projects: {
     header: 'Projects'
   },
-  Socials: {
-    header: 'Socials'
+  Contact: {
+    header: 'Contact'
   }
 }

@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'github-pages'
   },
-  modules: ['@nuxtjs/i18n', '@nuxt/icon'],
+  modules: ['@nuxtjs/i18n', '@nuxt/icon', '@nuxtjs/color-mode'],
   css: ['~/assets/css/tailwind.css'],
   i18n: {
     locales: [
@@ -22,7 +22,7 @@ export default defineNuxtConfig({
       { code: 'pl', iso: 'pl-PL', file: 'pl.ts', name: 'Polski' }
     ],
     defaultLocale: 'en',
-    strategy: 'no_prefix',
+    strategy: 'prefix_and_default',
     langDir: 'locales',
     vueI18n: './i18n.config.ts',
     detectBrowserLanguage: {

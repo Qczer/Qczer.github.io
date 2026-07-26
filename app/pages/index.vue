@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import socials from '~~/data/socials.json'
+import contact from '~~/data/contact.json'
 import skills from '~~/data/skills.json'
 import projects from '~~/data/projects.json'
 import Section from '~/components/section.vue'
-import SocialsCard from '~/components/socialsCard.vue'
+import ContactCard from '~/components/contactCard.vue'
 
 const { t } = useI18n()
 
-const socialsRef = ref<HTMLElement | null>(null)
+const contactRef = ref<HTMLElement | null>(null)
 const skillsRef = ref<HTMLElement | null>(null)
 const animate = ref(false)
 const animationLength = 400
@@ -36,22 +36,24 @@ onMounted(() => {
         animate.value = true
         setTimeout(
           () => (animate.value = false),
-          (socials.length - 1) * delay + animationLength
+          (contact.length - 1) * delay + animationLength
         )
       }
     },
     { threshold: 0.5 }
   )
 
-  if (socialsRef.value) {
-    observer.observe(socialsRef.value)
+  if (contactRef.value) {
+    observer.observe(contactRef.value)
   }
 })
 </script>
 
 <template>
   <div class="h-screen w-screen md:p-12">
-    <div class="relative h-full w-full rounded-xl border-white md:border">
+    <div
+      class="relative h-full w-full rounded-xl border-black md:border dark:border-white"
+    >
       <Canvas />
       <div
         class="scroll-container relative z-20 flex h-full w-full flex-col items-center gap-15 overflow-auto scroll-smooth text-center"
@@ -60,23 +62,16 @@ onMounted(() => {
           <Section name="AboutMe" />
           <Section name="HireMe">
             <a
-              @click="scrollTo(socialsRef)"
+              @click="scrollTo(contactRef)"
               class="cursor-pointer font-semibold underline transition-colors hover:text-zinc-400"
             >
               {{ t('HireMe.contactMe') }}
             </a>
           </Section>
-          <div
-            class="absolute bottom-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/40 bg-white/10 transition-all duration-300 hover:opacity-90"
-            :class="[
-              showScrollButton
-                ? 'opacity-50'
-                : 'pointer-events-none translate-y-4 opacity-0'
-            ]"
-            @click="scrollTo(skillsRef)"
-          >
-            <Icon name="lucide:arrow-down" />
-          </div>
+          <ScrollDownBtn
+            :show="showScrollButton"
+            :onClick="() => scrollTo(skillsRef)"
+          />
         </Page>
         <Page>
           <Section name="Skills">
@@ -84,10 +79,10 @@ onMounted(() => {
               ref="skillsRef"
               class="grid h-full grow grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4"
             >
-              <SkillsCard v-for="s in skills" :text="s" />
+              <SkillCard v-for="s in skills" :text="s" />
             </div>
             <div
-              class="h-1 w-full rounded-lg border-t border-white max-md:hidden"
+              class="h-1 w-full rounded-lg border-t border-black transition-colors max-md:hidden dark:border-white"
             ></div>
           </Section>
         </Page>
@@ -103,13 +98,13 @@ onMounted(() => {
           </Section>
         </Page>
         <Page>
-          <Section name="Socials">
+          <Section name="Contact">
             <div
-              ref="socialsRef"
+              ref="contactRef"
               class="grid grow grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4"
             >
-              <SocialsCard
-                v-for="(s, i) in socials"
+              <ContactCard
+                v-for="(s, i) in contact"
                 :key="s.header"
                 :header="s.header"
                 :text="s.text"
@@ -120,7 +115,7 @@ onMounted(() => {
               />
             </div>
             <div
-              class="h-1 w-full rounded-lg border-t border-white max-md:hidden"
+              class="h-1 w-full rounded-lg border-t border-black transition-colors max-md:hidden dark:border-white"
             ></div>
           </Section>
         </Page>

@@ -1,5 +1,8 @@
-* {
+.dark {
   scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+.light {
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -10,72 +13,9 @@
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+.dark::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
 }
-
-.animate-card {
-  animation: card-pop 400ms ease-out forwards;
-  animation-delay: var(--delay);
-}
-
-.animate-card h3 {
-  animation: title-pop 400ms ease-out forwards;
-  animation-delay: var(--delay);
-}
-
-.animate-card p {
-  animation: text-pop 400ms ease-out forwards;
-  animation-delay: var(--delay);
-}
-
-.animate-card .icon {
-  animation: icon-pop 400ms ease-out forwards;
-  animation-delay: var(--delay);
-}
-
-@keyframes card-pop {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.4);
-    background-color: rgba(255, 255, 255, 0.05);
-  }
-}
-
-@keyframes title-pop {
-  0%,
-  100% {
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  50% {
-    color: white;
-  }
-}
-
-@keyframes text-pop {
-  0%,
-  100% {
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  50% {
-    color: rgba(255, 255, 255, 0.7);
-  }
-}
-
-@keyframes icon-pop {
-  0%,
-  100% {
-    opacity: 0.6;
-  }
-
-  50% {
-    opacity: 1;
-  }
+.light::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
 }

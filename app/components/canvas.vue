@@ -3,6 +3,8 @@ import { getRandomColor, hexToRgb, rgbToString, lerp } from '~~/utils/colors'
 const canvas = ref<HTMLCanvasElement | null>(null)
 
 const blockSize = 5
+let animationFrameId = 0
+let cleanup: (() => void) | undefined
 
 onMounted(() => {
   const canvasEl = canvas.value as HTMLCanvasElement
@@ -20,8 +22,8 @@ onMounted(() => {
     y: -1000
   }
   const blocks = Array.from({ length: 30 }, () => ({
-    x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight,
+    x: Math.random() * canvasEl.width,
+    y: Math.random() * canvasEl.height,
     velocity: {
       x: Math.random() * 2 - 1,
       y: Math.random() * 2 - 1
@@ -101,21 +103,34 @@ onMounted(() => {
       ctx.fill()
     })
 
-    requestAnimationFrame(loop)
+    animationFrameId = requestAnimationFrame(loop)
   }
 
   loop()
 
-  window.addEventListener('mousemove', (event) => {
+  const handleMouseMove = (event: MouseEvent) => {
     const rect = canvasEl.getBoundingClientRect()
 
     mouse.x = event.clientX - rect.left
     mouse.y = event.clientY - rect.top
-  })
+  }
 
-  window.addEventListener('mousedown', () => {
+  const handleMouseDown = () => {
     targetColor = hexToRgb(getRandomColor())
-  })
+  }
+
+  window.addEventListener('mousemove', handleMouseMove)
+  window.addEventListener('mousedown', handleMouseDown)
+
+  cleanup = () => {
+    cancelAnimationFrame(animationFrameId)
+    window.removeEventListener('mousemove', handleMouseMove)
+    window.removeEventListener('mousedown', handleMouseDown)
+  }
+})
+
+onBeforeUnmount(() => {
+  cleanup?.()
 })
 </script>
 <template>

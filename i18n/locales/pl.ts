@@ -16,7 +16,7 @@ export default {
   Projects: {
     header: 'Projekty'
   },
-  Socials: {
+  Contact: {
     header: 'Kontakt'
   }
 } satisfies TranslationType
