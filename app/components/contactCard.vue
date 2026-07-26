@@ -23,14 +23,12 @@ const props = defineProps<{
     <div class="flex flex-col">
       <h3
         class="leading-tight font-medium text-black/80 transition-colors group-hover:text-black dark:text-white/80 dark:group-hover:text-white"
-        :class="{ 'animate-text': animate }"
       >
         {{ header }}
       </h3>
       <p
         v-if="text"
         class="text-sm leading-tight font-light text-black/50 transition-colors group-hover:text-black/70 dark:text-white/50 dark:group-hover:text-white/70"
-        :class="{ 'animate-text': animate }"
       >
         {{ text }}
       </p>
@@ -38,22 +36,25 @@ const props = defineProps<{
   </a>
 </template>
 <style scoped>
-.light {
-  --pop-border: rgba(0, 0, 0, 0.1);
-  --pop-bg: rgba(0, 0, 0, 0.05);
-  --pop-title-base: rgba(0, 0, 0, 0.7);
-  --pop-title-active: rgba(0, 0, 0, 1);
-  --pop-text-base: rgba(0, 0, 0, 0.5);
-  --pop-text-active: rgba(0, 0, 0, 0.7);
+:global(.light) .animate-card {
+  --pop-border: rgba(0, 0, 0, 0.4);
+  --pop-background: rgba(0, 0, 0, 0.05);
+  --pop-title: black;
+  --pop-text: rgba(0, 0, 0, 0.7);
 }
 
-.dark {
+:global(.dark) .animate-card {
   --pop-border: rgba(255, 255, 255, 0.4);
-  --pop-bg: rgba(255, 255, 255, 0.05);
-  --pop-title-base: rgba(255, 255, 255, 0.8);
-  --pop-title-active: white;
-  --pop-text-base: rgba(255, 255, 255, 0.5);
-  --pop-text-active: rgba(255, 255, 255, 0.7);
+  --pop-background: rgba(255, 255, 255, 0.05);
+  --pop-title: white;
+  --pop-text: rgba(255, 255, 255, 0.7);
+}
+
+.animate-card,
+h3,
+p,
+.icon {
+  animation-fill-mode: none !important;
 }
 
 .animate-card {
@@ -62,61 +63,41 @@ const props = defineProps<{
 }
 
 .animate-card h3 {
-  animation: title-pop 400ms ease-out forwards;
+  animation: title-highlight 400ms ease-out forwards;
   animation-delay: var(--delay);
 }
 
 .animate-card p {
-  animation: text-pop 400ms ease-out forwards;
+  animation: text-highlight 400ms ease-out forwards;
   animation-delay: var(--delay);
 }
 
 .animate-card .icon {
-  animation: icon-pop 400ms ease-out forwards;
+  animation: icon-highlight 400ms ease-out forwards;
   animation-delay: var(--delay);
 }
 
 @keyframes card-pop {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
   50% {
     transform: translateY(-4px);
     border-color: var(--pop-border);
-    background-color: var(--color-background);
+    background-color: var(--pop-background);
   }
 }
 
-@keyframes title-pop {
-  0%,
-  100% {
-    color: var(--pop-title-base);
-  }
-
+@keyframes title-highlight {
   50% {
-    color: var(--pop-title-active);
+    color: var(--pop-title);
   }
 }
 
-@keyframes text-pop {
-  0%,
-  100% {
-    color: var(--pop-title-base);
-  }
-
+@keyframes text-highlight {
   50% {
-    color: var(--pop-title-active);
+    color: var(--pop-text);
   }
 }
 
-@keyframes icon-pop {
-  0%,
-  100% {
-    opacity: 0.6;
-  }
-
+@keyframes icon-highlight {
   50% {
     opacity: 1;
   }

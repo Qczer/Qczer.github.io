@@ -22,7 +22,7 @@ export default defineNuxtConfig({
       { code: 'pl', iso: 'pl-PL', file: 'pl.ts', name: 'Polski' }
     ],
     defaultLocale: 'en',
-    strategy: 'prefix_and_default',
+    strategy: 'prefix_except_default',
     langDir: 'locales',
     vueI18n: './i18n.config.ts',
     detectBrowserLanguage: {
