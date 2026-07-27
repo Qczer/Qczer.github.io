@@ -1,10 +1,24 @@
 <script setup lang="ts">
 import { getRandomColor, hexToRgb, rgbToString, lerp } from '~~/utils/colors'
 const canvas = ref<HTMLCanvasElement | null>(null)
+interface block {
+  x: number
+  y: number
+  velocity: {
+    x: number
+    y: number
+  }
+}
 
 const blockSize = 5
+let blocksCount = 30
 let animationFrameId = 0
 let cleanup: (() => void) | undefined
+
+const BASE_REPEL_RADIUS = 80
+const BASE_REPEL_FORCE = 2
+const BASE_MIN_SPEED = 0.3
+const BASE_MAX_SPEED = 2
 
 onMounted(() => {
   const canvasEl = canvas.value as HTMLCanvasElement
@@ -12,6 +26,15 @@ onMounted(() => {
 
   canvasEl.width = canvasEl.clientWidth
   canvasEl.height = canvasEl.clientHeight
+
+  const createBlock = (): block => ({
+    x: Math.random() * canvasEl.width,
+    y: Math.random() * canvasEl.height,
+    velocity: {
+      x: Math.random() * 2 - 1,
+      y: Math.random() * 2 - 1
+    }
+  })
 
   const ctx = canvasEl.getContext('2d') as CanvasRenderingContext2D
 
@@ -21,20 +44,13 @@ onMounted(() => {
     x: -1000,
     y: -1000
   }
-  const blocks = Array.from({ length: 30 }, () => ({
-    x: Math.random() * canvasEl.width,
-    y: Math.random() * canvasEl.height,
-    velocity: {
-      x: Math.random() * 2 - 1,
-      y: Math.random() * 2 - 1
-    }
-  }))
+  const blocks: block[] = []
 
-  const repelRadius = 120
-  const repelForce = 2
-  const friction = 0.96
-  const minSpeed = 0.5
-  const maxSpeed = 3
+  let repelRadius = BASE_REPEL_RADIUS
+  let repelForce = BASE_REPEL_FORCE
+  let minSpeed = BASE_MIN_SPEED
+  let maxSpeed = BASE_MAX_SPEED
+  let friction = 0.96
 
   function loop() {
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
@@ -105,27 +121,87 @@ onMounted(() => {
 
     animationFrameId = requestAnimationFrame(loop)
   }
-
   loop()
 
-  const handleMouseMove = (event: MouseEvent) => {
+  const updateBlocksCount = () => {
+    blocksCount = Math.floor((canvasEl.width * canvasEl.height) / 60000)
+    blocksCount = Math.max(5, blocksCount)
+    blocksCount = Math.min(30, blocksCount)
+
+    const diffCount = blocksCount - blocks.length
+
+    if (diffCount > 0) {
+      blocks.push(...Array.from({ length: diffCount }, createBlock))
+    } else if (diffCount < 0) {
+      blocks.splice(blocksCount)
+    }
+  }
+  updateBlocksCount()
+
+  const updateScaling = () => {
+    // Obliczamy skalę. 1000px to nasz punkt odniesienia (możesz to dostosować)
+    // Używamy Math.sqrt(w * h), aby skala rosła proporcjonalnie do powierzchni/rozdzielczości
+    const reference = 1000
+    const currentRes = Math.sqrt(canvasEl.width * canvasEl.height)
+    const scaleFactor = currentRes / reference
+
+    repelRadius = BASE_REPEL_RADIUS * scaleFactor
+    repelForce = BASE_REPEL_FORCE * scaleFactor
+    minSpeed = BASE_MIN_SPEED * scaleFactor
+    maxSpeed = BASE_MAX_SPEED * scaleFactor
+  }
+
+  const handlePointerMove = (event: PointerEvent) => {
     const rect = canvasEl.getBoundingClientRect()
 
     mouse.x = event.clientX - rect.left
     mouse.y = event.clientY - rect.top
   }
 
-  const handleMouseDown = () => {
+  const handlePointerDown = (event: PointerEvent) => {
+    const rect = canvasEl.getBoundingClientRect()
+
+    mouse.x = event.clientX - rect.left
+    mouse.y = event.clientY - rect.top
+
     targetColor = hexToRgb(getRandomColor())
   }
 
-  window.addEventListener('mousemove', handleMouseMove)
-  window.addEventListener('mousedown', handleMouseDown)
+  const handlePointerUp = () => {
+    mouse.x = -1000
+    mouse.y = -1000
+  }
+
+  const handleResize = () => {
+    const oldWidth = canvasEl.width
+    const oldHeight = canvasEl.height
+
+    canvasEl.width = canvasEl.clientWidth
+    canvasEl.height = canvasEl.clientHeight
+
+    const scaleX = canvasEl.width / oldWidth
+    const scaleY = canvasEl.height / oldHeight
+
+    blocks.forEach((b) => {
+      b.x *= scaleX
+      b.y *= scaleY
+    })
+
+    updateBlocksCount()
+    updateScaling()
+  }
+
+  window.addEventListener('pointermove', handlePointerMove)
+  window.addEventListener('pointerdown', handlePointerDown)
+  window.addEventListener('pointerup', handlePointerUp)
+  window.addEventListener('resize', handleResize)
 
   cleanup = () => {
     cancelAnimationFrame(animationFrameId)
-    window.removeEventListener('mousemove', handleMouseMove)
-    window.removeEventListener('mousedown', handleMouseDown)
+    window.removeEventListener('pointermove', handlePointerMove)
+    window.removeEventListener('pointerdown', handlePointerDown)
+    window.removeEventListener('pointerup', handlePointerUp)
+    window.removeEventListener('resize', handleResize)
   }
 })
 
@@ -134,5 +210,8 @@ onBeforeUnmount(() => {
 })
 </script>
 <template>
-  <canvas ref="canvas" class="absolute inset-0 h-full w-full rounded-xl" />
+  <canvas
+    ref="canvas"
+    class="absolute inset-0 z-0 h-full w-full touch-none rounded-xl"
+  />
 </template>

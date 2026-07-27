@@ -18,7 +18,7 @@ const otherLocale = computed(() =>
       <ColorModeSwitch />
       <NuxtLink
         :to="switchLocalePath(otherLocale.code)"
-        class="cursor-pointer rounded-full border bg-black/5 px-2.5 py-1 text-xs font-semibold tracking-[0.2em] text-black/60 uppercase transition-colors hover:border-black/50 hover:bg-black/15 hover:text-black dark:border-black/20 dark:border-white/20 dark:bg-white/10 dark:text-white/60 dark:hover:border-white/50 dark:hover:bg-white/15 dark:hover:text-white"
+        class="cursor-pointer rounded-full border bg-black/5 px-2.5 py-1 text-xs font-semibold tracking-[0.2em] text-zinc-600 uppercase transition-colors hover:border-black/50 hover:bg-black/15 hover:text-black dark:border-black/20 dark:border-white/20 dark:bg-white/10 dark:text-zinc-400 dark:hover:border-white/50 dark:hover:bg-white/15 dark:hover:text-white"
       >
         {{ otherLocale.label }}
       </NuxtLink>

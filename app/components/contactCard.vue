@@ -12,23 +12,23 @@ const props = defineProps<{
     :href="link"
     rel="noopener noreferrer"
     target="_blank"
-    class="group flex flex-1 cursor-pointer gap-2 rounded-xl border border-black/10 px-4 py-3 text-left transition-all duration-300 hover:-translate-y-1 hover:border-black/40 hover:bg-black/5 dark:border-white/10 dark:hover:border-white/40 dark:hover:bg-white/5"
+    class="group flex flex-1 cursor-pointer gap-2 rounded-xl border border-black/10 px-4 py-3 text-left transition-all duration-300 select-none hover:-translate-y-1 hover:border-black/40 hover:bg-black/5 active:-translate-y-1 active:border-black/40 active:bg-black/5 dark:border-white/10 dark:hover:border-white/40 dark:hover:bg-white/5 dark:active:border-white/40 dark:active:bg-white/5"
     :class="{ 'animate-card': animate }"
   >
     <div
-      class="icon flex h-full items-center justify-center text-xl opacity-60 transition-opacity group-hover:opacity-100"
+      class="icon flex h-full items-center justify-center text-xl text-zinc-600 transition-colors group-hover:text-black group-active:text-black dark:text-zinc-400 dark:group-hover:text-white dark:group-active:text-white"
     >
       <Icon :name="icon ?? `simple-icons:${header.toLowerCase()}`" size="20" />
     </div>
     <div class="flex flex-col">
       <h3
-        class="leading-tight font-medium text-black/80 transition-colors group-hover:text-black dark:text-white/80 dark:group-hover:text-white"
+        class="leading-tight font-medium text-zinc-800 transition-colors group-hover:text-black group-active:text-black dark:text-zinc-200 dark:group-hover:text-white dark:group-active:text-white"
       >
         {{ header }}
       </h3>
       <p
         v-if="text"
-        class="text-sm leading-tight font-light text-black/50 transition-colors group-hover:text-black/70 dark:text-white/50 dark:group-hover:text-white/70"
+        class="text-sm leading-tight font-light text-zinc-500 transition-colors group-hover:text-zinc-700 group-active:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300 dark:group-active:text-zinc-300"
       >
         {{ text }}
       </p>
@@ -40,14 +40,16 @@ const props = defineProps<{
   --pop-border: rgba(0, 0, 0, 0.4);
   --pop-background: rgba(0, 0, 0, 0.05);
   --pop-title: black;
-  --pop-text: rgba(0, 0, 0, 0.7);
+  --pop-text: #3f3f46;
+  --pop-icon: black;
 }
 
 :global(.dark) .animate-card {
   --pop-border: rgba(255, 255, 255, 0.4);
   --pop-background: rgba(255, 255, 255, 0.05);
   --pop-title: white;
-  --pop-text: rgba(255, 255, 255, 0.7);
+  --pop-text: #d4d4d8;
+  --pop-icon: white;
 }
 
 .animate-card,
@@ -99,7 +101,7 @@ p,
 
 @keyframes icon-highlight {
   50% {
-    opacity: 1;
+    color: var(--pop-icon);
   }
 }
 </style>

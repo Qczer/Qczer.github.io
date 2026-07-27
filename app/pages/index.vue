@@ -63,7 +63,7 @@ onMounted(() => {
           <Section name="HireMe">
             <a
               @click="scrollTo(contactRef)"
-              class="cursor-pointer font-semibold underline transition-colors hover:text-zinc-400"
+              class="cursor-pointer font-semibold underline transition-colors hover:text-zinc-500 dark:hover:text-zinc-400"
             >
               {{ t('HireMe.contactMe') }}
             </a>
@@ -77,12 +77,12 @@ onMounted(() => {
           <Section name="Skills">
             <div
               ref="skillsRef"
-              class="grid h-full grow grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4"
+              class="grid h-full grow grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4"
             >
               <SkillCard v-for="s in skills" :text="s" />
             </div>
             <div
-              class="h-1 w-full rounded-lg border-t border-black transition-colors max-md:hidden dark:border-white"
+              class="h-1 w-full rounded-lg border-t border-black transition-colors dark:border-white"
             ></div>
           </Section>
         </Page>
@@ -115,7 +115,7 @@ onMounted(() => {
               />
             </div>
             <div
-              class="h-1 w-full rounded-lg border-t border-black transition-colors max-md:hidden dark:border-white"
+              class="h-1 w-full rounded-lg border-t border-black transition-colors dark:border-white"
             ></div>
           </Section>
         </Page>
