@@ -28,7 +28,7 @@ const props = defineProps<{
       </h3>
       <p
         v-if="text"
-        class="text-sm leading-tight font-light text-zinc-500 transition-colors group-hover:text-zinc-700 group-active:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300 dark:group-active:text-zinc-300"
+        class="text-xs leading-tight text-zinc-500 transition-colors group-hover:text-zinc-700 group-active:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300 dark:group-active:text-zinc-300"
       >
         {{ text }}
       </p>
