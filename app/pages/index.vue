@@ -83,7 +83,7 @@ onMounted(() => {
             </div>
             <div
               class="h-1 w-full rounded-lg border-t border-black transition-colors dark:border-white"
-            ></div>
+            />
           </Section>
         </Page>
         <Page>
@@ -116,7 +116,7 @@ onMounted(() => {
             </div>
             <div
               class="h-1 w-full rounded-lg border-t border-black transition-colors dark:border-white"
-            ></div>
+            />
           </Section>
         </Page>
       </div>

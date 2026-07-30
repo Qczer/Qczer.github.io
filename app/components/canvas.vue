@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { getRandomColor, hexToRgb, rgbToString, lerp } from '~~/utils/colors'
-const canvas = ref<HTMLCanvasElement | null>(null)
+
+const isLoaded = useCanvas()
+
 interface block {
   x: number
   y: number
@@ -9,6 +11,8 @@ interface block {
     y: number
   }
 }
+
+const canvas = ref<HTMLCanvasElement | null>(null)
 
 const blockSize = 5
 let blocksCount = 30
@@ -203,6 +207,8 @@ onMounted(() => {
     window.removeEventListener('pointerup', handlePointerUp)
     window.removeEventListener('resize', handleResize)
   }
+
+  isLoaded.value = true
 })
 
 onBeforeUnmount(() => {

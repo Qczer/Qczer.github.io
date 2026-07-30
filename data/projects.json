@@ -16,5 +16,11 @@
     "technology": ["React Native"],
     "desc": "A poker and blackjack training app built with a friend, featuring hand evaluation and educational content.",
     "link": "https://github.com/jaca3894/Stacked"
+  },
+  {
+    "name": "BiteBack",
+    "technology": ["React Native"],
+    "desc": "An app built for a coding competition to help reduce food waste.",
+    "link": "https://github.com/Qczer/BiteBack"
   }
 ]

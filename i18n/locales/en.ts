@@ -1,7 +1,7 @@
 export default {
   AboutMe: {
     header: 'About Me',
-    text: "Hi! I'm <b>Mateusz Kuczera</b>, an <b>18-year-old</b> software developer who is always eager to learn and explore new technologies.<br/>I actively build real-world projects and continuously improve my skills. My main focus is modern C++, Nuxt and React"
+    text: "Hi! I'm <b>Mateusz Kuczera</b>, an <b>18-year-old</b> software developer who is always eager to learn and explore new technologies.<br/>I actively build real-world projects and continuously improve my skills. My main focus is modern <span class='whitespace-nowrap'>C++</span>, Nuxt and React"
   },
   HireMe: {
     header: 'Hire Me',

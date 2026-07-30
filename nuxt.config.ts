@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'github-pages'
   },
-  modules: ['@nuxtjs/i18n', '@nuxt/icon', '@nuxtjs/color-mode'],
+  modules: ['@nuxtjs/i18n', '@nuxt/icon', '@nuxtjs/color-mode', '@nuxt/fonts'],
   css: ['~/assets/css/tailwind.css'],
   i18n: {
     locales: [

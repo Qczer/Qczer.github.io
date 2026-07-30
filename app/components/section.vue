@@ -10,8 +10,8 @@ const { t, te } = useI18n()
     <h2
       class="text-3xl font-medium tracking-wider uppercase"
       v-html="t(`${name}.header`)"
-    ></h2>
-    <p v-if="te(`${name}.text`)" v-html="t(`${name}.text`)"></p>
+    />
+    <p v-if="te(`${name}.text`)" v-html="t(`${name}.text`)" />
     <slot />
   </div>
 </template>
