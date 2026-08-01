@@ -24,7 +24,7 @@ const isLoaded = useCanvas()
     >
       <h1
         v-if="!isLoaded"
-        class="font-display absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl"
       >
         Mateusz Kuczera
       </h1>

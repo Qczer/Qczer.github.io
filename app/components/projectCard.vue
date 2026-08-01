@@ -44,7 +44,7 @@ const goToPage = () => {
     <Icon
       name="lucide:external-link"
       size="24"
-      class="shrink-0 transition-transform group-hover:translate-x-2 group-active:translate-x-2"
+      class="shrink-0 text-zinc-500 transition-all duration-300 group-hover:translate-x-2 group-hover:text-black group-active:translate-x-2 dark:group-hover:text-white"
     />
     <div
       class="absolute bottom-0 left-1/2 h-px w-full -translate-x-1/2 scale-x-0 bg-black transition-transform duration-300 ease-out group-hover:scale-x-100 group-active:scale-x-100 dark:bg-white"

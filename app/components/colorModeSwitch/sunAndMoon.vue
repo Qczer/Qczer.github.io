@@ -27,18 +27,25 @@ const rays = [0, 45, 90, 135, 180, 225, 270, 315]
       { 'can-animate': canAnimate }
     ]"
   >
-    <circle id="main-body" r="9" :fill="color" mask="url(#moon-mask)" />
     <defs>
       <mask id="moon-mask">
         <rect x="-15" y="-15" width="30" height="30" fill="white" />
-        <circle id="mask-circle" r="9" cx="6" cy="-6" fill="black" />
+        <circle id="mask-circle" r="8" cx="6" cy="-6" fill="black" />
       </mask>
     </defs>
+    <circle
+      id="main-body"
+      r="8"
+      x="0"
+      y="0"
+      :fill="color"
+      mask="url(#moon-mask)"
+    />
     <g id="rays-group" :stroke="color" stroke-width="2" stroke-linecap="round">
       <path
         v-for="r in rays"
         :key="r"
-        d="M0,9 L0,12"
+        d="M0,10 L0,12"
         class="ray"
         :transform="`rotate(${r})`"
       />

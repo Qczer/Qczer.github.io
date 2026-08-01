@@ -8,7 +8,7 @@ const { t, te } = useI18n()
 <template>
   <div class="flex w-full flex-col gap-5" :id="name">
     <h2
-      class="text-3xl font-medium tracking-wider uppercase"
+      class="text-3xl font-semibold tracking-wider uppercase"
       v-html="t(`${name}.header`)"
     />
     <p v-if="te(`${name}.text`)" v-html="t(`${name}.text`)" />

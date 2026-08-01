@@ -6,7 +6,6 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-display: 'Space Grotesk', serif;
 }
 
 @layer base {
@@ -24,5 +23,6 @@
     @apply text-foreground;
     @apply bg-background;
     @apply transition-colors;
+    @apply duration-300;
   }
 }

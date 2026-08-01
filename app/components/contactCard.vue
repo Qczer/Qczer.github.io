@@ -12,23 +12,23 @@ const props = defineProps<{
     :href="link"
     rel="noopener noreferrer"
     target="_blank"
-    class="group flex flex-1 cursor-pointer gap-2 rounded-xl border border-black/10 px-4 py-3 text-left transition-all duration-300 select-none hover:-translate-y-1 hover:border-black/40 hover:bg-black/5 active:-translate-y-1 active:border-black/40 active:bg-black/5 dark:border-white/10 dark:hover:border-white/40 dark:hover:bg-white/5 dark:active:border-white/40 dark:active:bg-white/5"
+    class="group flex flex-1 cursor-pointer gap-2 rounded-xl border border-black/10 px-4 py-3 text-left transition-all duration-400 select-none hover:-translate-y-1 hover:border-black/40 hover:bg-black/5 active:-translate-y-1 active:border-black/40 active:bg-black/5 dark:border-white/10 dark:hover:border-white/40 dark:hover:bg-white/5 dark:active:border-white/40 dark:active:bg-white/5"
     :class="{ 'animate-card': animate }"
   >
     <div
-      class="icon flex h-full items-center justify-center text-xl text-zinc-600 transition-colors group-hover:text-black group-active:text-black dark:text-zinc-400 dark:group-hover:text-white dark:group-active:text-white"
+      class="icon flex h-full items-center justify-center text-xl text-zinc-500 transition-colors duration-400 group-hover:text-black group-active:text-black dark:text-zinc-400 dark:group-hover:text-white dark:group-active:text-white"
     >
       <Icon :name="icon ?? `simple-icons:${header.toLowerCase()}`" size="20" />
     </div>
     <div class="flex flex-col">
       <h3
-        class="leading-tight font-medium text-zinc-800 transition-colors group-hover:text-black group-active:text-black dark:text-zinc-200 dark:group-hover:text-white dark:group-active:text-white"
+        class="leading-tight font-medium text-zinc-600 transition-colors duration-400 group-hover:text-black group-active:text-black dark:text-zinc-300 dark:group-hover:text-white dark:group-active:text-white"
       >
         {{ header }}
       </h3>
       <p
         v-if="text"
-        class="text-xs leading-tight text-zinc-500 transition-colors group-hover:text-zinc-700 group-active:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300 dark:group-active:text-zinc-300"
+        class="text-xs leading-tight text-zinc-500 transition-colors duration-400 group-hover:text-zinc-700 group-active:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300 dark:group-active:text-zinc-300"
       >
         {{ text }}
       </p>
